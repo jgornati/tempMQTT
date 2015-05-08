@@ -1,4 +1,5 @@
 var mosca = require('mosca')
+var io = require('socket.io').listen(4500);
 
 var dbsetting = {
   //using ascoltatore
@@ -27,11 +28,13 @@ var servermqtt = new mosca.Server(moscaSettings);
 
 servermqtt.on('clientConnected', function(client) {
   console.log('client connected', client.id);
+  io.sockets.emit('client', {cliente:String(client.id)});
 });
 
 // fired when a message is received
 servermqtt.on('published', function(packet, client) {
   console.log('Published ' + packet.payload);
+  io.sockets.emit('topic', {tema: String(packet.topic), valor: String(packet.payload),});
 });
 
 servermqtt.on('ready', function setup() {
