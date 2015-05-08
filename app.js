@@ -10,7 +10,11 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/user');
 
-var app = express();
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/mqttDB');
+
+var app = exports.app = express();
 
 // view engine setup
 
@@ -39,6 +43,9 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+//llamamos a mqttIO.js que levanta al broker mqtt
+// var servermqtt = require('./mqttIO.js');
+var servermqtt = require('./mqttbroker.js');
 
 /// error handlers
 

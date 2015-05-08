@@ -17,19 +17,27 @@ var moscaSettings = {
   }
 };
 
-var server = new mosca.Server(moscaSettings);
-server.on('ready', setup);
+var authenticate = function(client, username, password, callback) {
+  var authorized = (username === 'joel' && password.toString() === 'asd');
+  if (authorized) client.user = username;
+  callback(null, authorized);
+};
 
-server.on('clientConnected', function(client) {
-    console.log('client connected', client.id);
+var servermqtt = new mosca.Server(moscaSettings);
+
+servermqtt.on('clientConnected', function(client) {
+  console.log('client connected', client.id);
 });
 
 // fired when a message is received
-server.on('published', function(packet, client) {
-  console.log('Published ', packet.payload);
+servermqtt.on('published', function(packet, client) {
+  console.log('Published ' + packet.payload);
 });
 
-// fired when the mqtt server is ready
-function setup() {
+servermqtt.on('ready', function setup() {
+  servermqtt.authenticate = authenticate;
   console.log('Mosca server is up and running')
-}
+});
+
+
+module.exports = servermqtt;

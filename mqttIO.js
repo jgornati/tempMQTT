@@ -1,20 +1,12 @@
-var mosca = require('mosca')
-var io = require('socket.io').listen(4500);
-var dbsetting = {
-  //using ascoltatore
-  type: 'mongo',
-  url: 'mongodb://localhost:27017/mqtt',
-  pubsubCollection: 'mqttDB',
-  mongo: {}
-};
+/*
+buen intento pero no anda lo del client.id asi que me hinche las pelotas
+y use la persistencia de la libreria mosca, tengo que ver como decodificar
+el value porque pone algo como esto -> BinData(0, hlkasjd90123i123)
+*/var mosca = require('mosca');
+var Topics = require('./models/topics.js');
 
 var moscaSettings = {
-  port: 1883,
-  backend: dbsetting,
-  persistence: {
-    factory: mosca.persistence.Mongo,
-    url: 'mongodb://localhost:27017/mqtt'
-  }
+  port: 1883
 };
 
 var authenticate = function(client, username, password, callback) {
@@ -23,20 +15,38 @@ var authenticate = function(client, username, password, callback) {
   callback(null, authorized);
 };
 
-var server = new mosca.Server(moscaSettings);
-server.on('ready', setup);
 
-server.on('clientConnected', function(client) {
-    console.log('client connected', client.id);
+var servermqtt = new mosca.Server(moscaSettings);
+
+servermqtt.on('clientConnected', function(client) {
+  console.log('client connected', client.id);
 });
 
 // fired when a message is received
-server.on('published', function(packet, client) {
+servermqtt.on('published', function(packet, client) {
   console.log('Published ' + packet.payload);
+  // console.log('Published ' + packet.topic);
+  // console.log('Published ' + client);
+  var t = new Topics({
+    TopicClientId: String(client),
+    TopicTema: packet.topic,
+    TopicValue: packet.payload,
+    TopicTime: new Date()
+  });
+  t.save(function(err, doc){
+    if(!err){
+      console.log("guarde el paquete");
+    }else{
+      console.log("error al guardar papquete");
+      console.log(doc);
+    }
+  });
 });
 
-// fired when the mqtt server is ready
-function setup() {
-  server.authenticate = authenticate;
+servermqtt.on('ready', function setup() {
+  servermqtt.authenticate = authenticate;
   console.log('Mosca server is up and running')
-}
+});
+
+
+module.exports = servermqtt;
