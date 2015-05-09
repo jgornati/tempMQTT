@@ -1,5 +1,5 @@
 var mosca = require('mosca')
-var io = require('socket.io').listen(4500);
+var io = module.parent.exports.io;
 
 var dbsetting = {
   //using ascoltatore
@@ -41,6 +41,3 @@ servermqtt.on('ready', function setup() {
   servermqtt.authenticate = authenticate;
   console.log('Mosca server is up and running')
 });
-
-
-module.exports = servermqtt;

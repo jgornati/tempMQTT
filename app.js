@@ -1,5 +1,3 @@
-
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -45,7 +43,7 @@ app.use(function(req, res, next) {
 });
 //llamamos a mqttIO.js que levanta al broker mqtt
 // var servermqtt = require('./mqttIO.js');
-var servermqtt = require('./mqttbroker.js');
+ 
 
 /// error handlers
 
