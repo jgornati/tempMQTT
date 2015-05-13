@@ -1,0 +1,57 @@
+body{
+
+}
+#temp1 {
+  width:320px; height:250px;
+}
+#hum1 {
+  width:320px; height:250px;
+}
+
+.cf-td-time{
+  font-size: 40px;
+  font-family: 'Fontdiner Swanky', cursive;
+}
+.cf-td-dd{
+  font-family: 'Fontdiner Swanky', cursive;
+}
+.cf-td-dd p{
+  display: inline-block;
+}
+
+.addPadding{
+  padding-top: 50px;
+}
+
+.addMargin{
+  margin-top: 40px;
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .addPadding{
+    padding-top: 0px;
+  }
+
+  .addMargin{
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .addPadding{
+    padding-top: 0px
+  }
+
+  .addMargin{
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 767px) {
+
+}
+
+@media only screen and (min-width: 10px) and (max-width: 350px) {
+
+}

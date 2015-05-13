@@ -34,6 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+//agrego la direccion de donde estan las js, css, img
+app.use(express.static(__dirname + '/views'));
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,7 +45,7 @@ app.use(function(req, res, next) {
 });
 //llamamos a mqttIO.js que levanta al broker mqtt
 // var servermqtt = require('./mqttIO.js');
- 
+
 
 /// error handlers
 
