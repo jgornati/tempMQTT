@@ -4,6 +4,7 @@ y use la persistencia de la libreria mosca, tengo que ver como decodificar
 el value porque pone algo como esto -> BinData(0, hlkasjd90123i123)
 */var mosca = require('mosca');
 var Topics = require('./models/topics.js');
+var io = module.parent.exports.io;
 
 var moscaSettings = {
   port: 1883
@@ -28,7 +29,6 @@ servermqtt.on('published', function(packet, client) {
   // console.log('Published ' + packet.topic);
   // console.log('Published ' + client);
   var t = new Topics({
-    TopicClientId: String(client),
     TopicTema: packet.topic,
     TopicValue: packet.payload,
     TopicTime: new Date()
@@ -36,6 +36,7 @@ servermqtt.on('published', function(packet, client) {
   t.save(function(err, doc){
     if(!err){
       console.log("guarde el paquete");
+      io.sockets.emit('topic', {tema: String(packet.topic), valor: String(packet.payload)});
     }else{
       console.log("error al guardar papquete");
       console.log(doc);
