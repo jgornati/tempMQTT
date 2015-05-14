@@ -29,9 +29,9 @@ servermqtt.on('published', function(packet, client) {
   // console.log('Published ' + packet.topic);
   // console.log('Published ' + client);
   var t = new Topics({
+    TopicTime: Date(),
     TopicTema: packet.topic,
-    TopicValue: packet.payload,
-    TopicTime: new Date()
+    TopicValue: packet.payload
   });
   t.save(function(err, doc){
     if(!err){

@@ -1,57 +1,48 @@
-body{
-
+body {
+  background-image: url(../img/background.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 #temp1 {
-  width:320px; height:250px;
+  width: 320px;
+  height: 250px;
 }
 #hum1 {
-  width:320px; height:250px;
+  width: 320px;
+  height: 250px;
 }
-
-.cf-td-time{
+.cf-td-time {
   font-size: 40px;
   font-family: 'Fontdiner Swanky', cursive;
 }
-.cf-td-dd{
+.cf-td-dd {
   font-family: 'Fontdiner Swanky', cursive;
 }
-.cf-td-dd p{
+.cf-td-dd p {
   display: inline-block;
 }
-
-.addPadding{
+.addPadding {
   padding-top: 50px;
 }
-
-.addMargin{
+.addMargin {
   margin-top: 40px;
 }
-
-
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .addPadding{
+  .addPadding {
     padding-top: 0px;
   }
-
-  .addMargin{
+  .addMargin {
     margin-top: 0px;
   }
 }
-
 @media only screen and (max-width: 767px) {
-  .addPadding{
+  .addPadding {
     padding-top: 0px
   }
-
-  .addMargin{
+  .addMargin {
     margin-top: 0px;
   }
 }
-
-@media only screen and (min-width: 500px) and (max-width: 767px) {
-
-}
-
-@media only screen and (min-width: 10px) and (max-width: 350px) {
-
-}
+@media only screen and (min-width: 500px) and (max-width: 767px) {}
+@media only screen and (min-width: 10px) and (max-width: 350px) {}

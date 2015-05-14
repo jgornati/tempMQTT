@@ -30,6 +30,12 @@ html(lang='en')
     // Hora y Fecha
     script(src='js/time/moment.js')
     // scripts propios
+    script(src="/socket.io/socket.io.js")
+    script.
+      var socket = io.connect('http://localhost:3000');
+      socket.on('topic', function (data) {
+          console.log(data);
+      });
     script(type='text/javascript', src='js/scripts.js')
   body
     .container

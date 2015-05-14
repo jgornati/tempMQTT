@@ -22,11 +22,23 @@ window.onload = function() {
   }, 1500);
 
   $(function() {
-    $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function(data) {
-      // Create the chart
+    var dataTemp = new Array();
+
+    $.getJSON('http://localhost:3000/Temp1', function(json) {
+      $.map(json, function(obj, i) {
+        dataTemp.push({
+          x: new Date(obj.TopicTime).getTime(),
+          y: parseFloat(obj.TopicValue)
+        });
+      });
+      console.log("esto es data: " + JSON.stringify(dataTemp));
       $('#chartTemp').highcharts('StockChart', {
         rangeSelector: {
           selected: 1
+        },
+
+        chart: {
+          backgroundColor: 'rgba(255, 255, 255, 0.1)'
         },
 
         title: {
@@ -39,7 +51,8 @@ window.onload = function() {
 
         series: [{
           name: 'TEMPERATURA',
-          data: data,
+          data: dataTemp,
+          color: '#ff0000',
           tooltip: {
             valueDecimals: 2
           }
@@ -49,11 +62,23 @@ window.onload = function() {
   });
 
   $(function() {
-    $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function(data) {
-      // Create the chart
+    var dataHum = new Array();
+
+    $.getJSON('http://localhost:3000/hum1', function(json) {
+      $.map(json, function(obj, i) {
+        dataHum.push({
+          x: new Date(obj.TopicTime).getTime(),
+          y: parseFloat(obj.TopicValue)
+        });
+      });
+      console.log("esto es data: " + JSON.stringify(dataHum));
       $('#chartHum').highcharts('StockChart', {
         rangeSelector: {
           selected: 1
+        },
+
+        chart: {
+          backgroundColor: 'rgba(255, 255, 255, 0.1)'
         },
 
         title: {
@@ -66,7 +91,7 @@ window.onload = function() {
 
         series: [{
           name: 'HUMEDAD',
-          data: data,
+          data: dataHum,
           tooltip: {
             valueDecimals: 2
           }
@@ -74,6 +99,11 @@ window.onload = function() {
       });
     });
   });
+
+
+
+
+
 };
 (function updateTime() {
   var now = moment().locale('es');
