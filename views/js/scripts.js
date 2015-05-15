@@ -21,7 +21,7 @@ window.onload = function() {
   //   hum1.refresh(getRandomInt(50, 100));
   // }, 1500);
 
-  var socket = io.connect('http://192.168.0.10:3000');
+  var socket = io.connect(window.location.href);
 
   socket.on('topic', function(topic) {
     //hum1.refresh(parseFloat(dataHum1.valor));
@@ -32,7 +32,7 @@ window.onload = function() {
   $(function() {
     var dataTemp = new Array();
 
-    $.getJSON('http://192.168.0.10:3000/Temp1', function(json) {
+    $.getJSON('http://192.168.0.10:3000/temp1', function(json) {
       $.map(json, function(obj, i) {
         dataTemp.push({
           x: new Date(obj.TopicTime),
