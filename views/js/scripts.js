@@ -73,6 +73,7 @@ window.onload = function() {
         series: [{
           name: 'TEMPERATURA',
           data: dataTemp,
+          turboThreshold: 0,
           color: '#ff0000',
           tooltip: {
             valueDecimals: 2
@@ -126,6 +127,7 @@ window.onload = function() {
         series: [{
           name: 'HUMEDAD',
           data: dataHum,
+          turboThreshold: 0,
           tooltip: {
             valueDecimals: 2
           }

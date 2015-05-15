@@ -1,3 +1,7 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//NO LO USO PORQUE USAR mqttIO.js                                  +
+//GUARDA MAL LOS DATOS Y NO ESTAMPA EL TIEMPO                      +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 var mosca = require('mosca')
 var io = module.parent.exports.io;
 
@@ -38,7 +42,7 @@ servermqtt.on('published', function(packet, client) {
     io.sockets.emit('t1', {tema: String(packet.topic), valor: String(packet.payload)});
   }
   if(packet.topic = 'h1'){
-    io.sockets.emit('h1', {tema: String(packet.topic), valor: String(packet.payload)});  
+    io.sockets.emit('h1', {tema: String(packet.topic), valor: String(packet.payload)});
   }
   // io.sockets.emit('topic', {tema: String(packet.topic), valor: String(packet.payload),});
 });
