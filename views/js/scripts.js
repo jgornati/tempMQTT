@@ -159,3 +159,27 @@ window.onload = function() {
 
   setTimeout(updateTime, 3000);
 })();
+
+
+// cundo voy al anchor #about oculto el home para que no se estire y se vea por detras
+
+$(document).ready(function() {
+  $(window).bind('hashchange', function(e) {
+    var anchor = document.location.hash;
+    if (anchor === '#about') {
+      $("#home").delay(100).hide(0);
+    }
+    if (anchor === '#home') {
+      $("#home").show(0);
+    }
+  });
+});
+
+$(document).keydown(function(tecla) {
+  if (tecla.keyCode == 37) {
+    document.location.hash = '#about';
+  }
+  if (tecla.keyCode == 39) {
+    document.location.hash = '#home';
+  }
+});

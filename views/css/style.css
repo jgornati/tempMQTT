@@ -1,8 +1,14 @@
+html, body {
+	height:100%;
+}
 body {
+  width: 100%;
   background-image: url(../img/background.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 #temp1 {
   width: 320px;
@@ -14,10 +20,10 @@ body {
 }
 .cf-td-time {
   font-size: 40px;
-  font-family: 'Fontdiner Swanky', cursive;
+
 }
-.cf-td-dd {
-  font-family: 'Fontdiner Swanky', cursive;
+.fuenteRara{
+	font-family: 'Fontdiner Swanky', cursive;
 }
 .cf-td-dd p {
   display: inline-block;
@@ -28,6 +34,50 @@ body {
 .addMargin {
   margin-top: 40px;
 }
+.paddin1{
+	padding-top: 40px;
+}
+.logos img{
+	display: inline-block;
+	margin:30px;
+}
+#home{
+  background-color: rgba(255, 255, 255, 0);
+}
+#about{
+  width: 100%;
+  background-image: url(../img/background.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+/*Estilo del panel*/
+.panel{
+  top:0%;
+  margin-bottom: 0%;
+	/*width: 100%;*/
+	min-height: 100%;
+	position: absolute;
+	margin-left: -102%;
+	z-index: 2;
+	-webkit-transition: all .6s ease-in-out;
+	-moz-transition: all .6s ease-in-out;
+	-o-transition: all .6s ease-in-out;
+	-ms-transition: all .6s ease-in-out;
+  transition: all .6s ease-in-out;
+}
+.panel:target{
+	margin-left: 0%;
+}
+
+.content{
+	right: 0%;
+	left: 0%;
+	top: 0%;
+	position: absolute;
+}
+
+/*Media querys*/
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .addPadding {
     padding-top: 0px;
@@ -35,7 +85,9 @@ body {
   .addMargin {
     margin-top: 0px;
   }
+
 }
+
 @media only screen and (max-width: 767px) {
   .addPadding {
     padding-top: 0px
@@ -44,6 +96,7 @@ body {
     margin-top: 0px;
   }
 }
+
 @media only screen and (min-width: 1920px) and (max-width: 1920px) {
   body{
     padding-top: 100px;
