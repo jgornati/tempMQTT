@@ -31,11 +31,6 @@ html(lang='en')
     script(src='js/time/moment.js')
     // scripts propios
     script(src="/socket.io/socket.io.js")
-    script.
-      var socket = io.connect('http://localhost:3000');
-      socket.on('topic', function (data) {
-          console.log(data);
-      });
     script(type='text/javascript', src='js/scripts.js')
   body
     .container
@@ -46,7 +41,7 @@ html(lang='en')
             .cf-td
               .cf-td-time 12:00
               .cf-td-dd
-                p.cf-td-day Monday, 
+                p.cf-td-day Monday,&nbsp;
                 p.cf-td-date 1st October, 2013
           // RELOJ DE TEMPERATURA
           #temp1.container

@@ -10,6 +10,7 @@ var users = require('./routes/user');
 
 var mongoose = require('mongoose');
 
+
 mongoose.connect('mongodb://localhost/mqttDB');
 
 var app = exports.app = express();

@@ -1,8 +1,4 @@
-/*
-buen intento pero no anda lo del client.id asi que me hinche las pelotas
-y use la persistencia de la libreria mosca, tengo que ver como decodificar
-el value porque pone algo como esto -> BinData(0, hlkasjd90123i123)
-*/var mosca = require('mosca');
+var mosca = require('mosca');
 var Topics = require('./models/topics.js');
 var io = module.parent.exports.io;
 
@@ -28,6 +24,7 @@ servermqtt.on('published', function(packet, client) {
   console.log('Published ' + packet.payload);
   // console.log('Published ' + packet.topic);
   // console.log('Published ' + client);
+  console.log(Date());
   var t = new Topics({
     TopicTime: Date(),
     TopicTema: packet.topic,
@@ -36,6 +33,12 @@ servermqtt.on('published', function(packet, client) {
   t.save(function(err, doc){
     if(!err){
       console.log("guarde el paquete");
+      if(packet.topic == 't1'){
+        io.sockets.emit('t1', {tema: String(packet.topic), valor: String(packet.payload)});
+      }
+      if(packet.topic == 'h1'){
+        io.sockets.emit('h1', {tema: String(packet.topic), valor: String(packet.payload)});
+      }
       io.sockets.emit('topic', {tema: String(packet.topic), valor: String(packet.payload)});
     }else{
       console.log("error al guardar papquete");

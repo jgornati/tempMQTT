@@ -34,7 +34,13 @@ servermqtt.on('clientConnected', function(client) {
 // fired when a message is received
 servermqtt.on('published', function(packet, client) {
   console.log('Published ' + packet.payload);
-  io.sockets.emit('topic', {tema: String(packet.topic), valor: String(packet.payload),});
+  if(packet.topic = 't1'){
+    io.sockets.emit('t1', {tema: String(packet.topic), valor: String(packet.payload)});
+  }
+  if(packet.topic = 'h1'){
+    io.sockets.emit('h1', {tema: String(packet.topic), valor: String(packet.payload)});  
+  }
+  // io.sockets.emit('topic', {tema: String(packet.topic), valor: String(packet.payload),});
 });
 
 servermqtt.on('ready', function setup() {
