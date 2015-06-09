@@ -1,3 +1,4 @@
+var compression = require('compression')
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -25,6 +26,7 @@ app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
+app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
