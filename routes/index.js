@@ -13,14 +13,18 @@ router.get('/', function(req, res) {
 // GET Lista de temp1 de la DB
 
 router.get('/temp1', function(req, res){
+//agrego las cabeceras para que no aparezca error "Access-COntroll....
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   Topics.find({TopicTema: "t1"},{TopicTime: 1, TopicValue: 1, _id: 0}, function(err, docs) {
     res.json(docs);
   });
 });
 
 // GET Lista de hum1 de la DB
-var datos;
 router.get('/hum1', function(req, res){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   Topics.find({TopicTema: "h1"},{TopicTime: 1, TopicValue: 1, _id: 0}, function(err, docs) {
      res.json(docs);
   });
