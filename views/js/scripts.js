@@ -32,7 +32,7 @@ window.onload = function() {
   $(function() {
     var dataTemp = new Array();
 
-    $.getJSON('http://192.168.0.10:3000/temp1', function(json) {
+    $.getJSON('http://192.168.1.123:3000/temp1', function(json) {
       $.map(json, function(obj, i) {
         dataTemp.push({
           x: new Date(obj.TopicTime),
@@ -86,7 +86,7 @@ window.onload = function() {
   $(function() {
     var dataHum = new Array();
 
-    $.getJSON('http://192.168.0.10:3000/hum1', function(json) {
+    $.getJSON('http://192.168.1.123:3000/hum1', function(json) {
       $.map(json, function(obj, i) {
         dataHum.push({
           x: new Date(obj.TopicTime),
